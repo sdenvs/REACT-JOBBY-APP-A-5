@@ -11,7 +11,7 @@ class Home extends Component {
         <div className="home-content">
           <h1 className="home-heading">Find the Job That Fits Your Life</h1>
           <p className="home-para">
-            Million of people are searching for jobs, salary information,
+            Millions of people are searching for jobs, salary information,
             company reviews. Find the jobs that fits your abilities and
             potential.
           </p>

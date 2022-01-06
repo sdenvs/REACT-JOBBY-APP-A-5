@@ -1,10 +1,13 @@
 import Cookies from 'js-cookie'
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import {BsSearch} from 'react-icons/bs'
 import Header from '../Header'
 import Jobcard from '../Jobcard'
 import RenderFailed from '../FailedView'
 import './index.css'
+import SalaryRange from '../SalaryRange'
+import EmploymentType from '../EmploymentType'
 
 const employmentTypesList = [
   {
@@ -142,7 +145,12 @@ class Jobs extends Component {
           type="search"
           className="form-control search-input"
         />
-        <button onClick={this.getJobsList} className="border-0 search-button">
+        <button
+          type="button"
+          testid="searchButton"
+          onClick={this.getJobsList}
+          className="border-0 search-button"
+        >
           <BsSearch className="search-icon" />
         </button>
       </div>
@@ -162,7 +170,7 @@ class Jobs extends Component {
     }
     return (
       <div className="profile-container">
-        <img src={profileData.profileImageUrl} />
+        <img src={profileData.profileImageUrl} alt="profile" />
         <h1 className="profile-heading">{profileData.name}</h1>
         <p className="profile-para">{profileData.shortBio}</p>
       </div>
@@ -189,17 +197,11 @@ class Jobs extends Component {
       <h1 className="filter-heading">Type of Employment</h1>
       <ul className="ulList">
         {employmentTypesList.map(eachItem => (
-          <li className="">
-            <input
-              onChange={this.employmentTypeFun}
-              type="Checkbox"
-              id={eachItem.employmentTypeId}
-              value={eachItem.employmentTypeId}
-            />
-            <label htmlFor={eachItem.employmentTypeId} className="label">
-              {eachItem.label}
-            </label>
-          </li>
+          <EmploymentType
+            employmentTypeFun={this.employmentTypeFun}
+            eachItem={eachItem}
+            key={eachItem.employmentTypeId}
+          />
         ))}
       </ul>
     </div>
@@ -214,17 +216,7 @@ class Jobs extends Component {
       <h1 className="filter-heading">Salary Range</h1>
       <ul className="ulList" id="salary" onChange={this.changeMinSalary}>
         {salaryRangesList.map(eachItem => (
-          <li className="">
-            <input
-              name="salary"
-              type="radio"
-              value={eachItem.salaryRangeId}
-              id={eachItem.salaryRangeId}
-            />
-            <label htmlFor={eachItem.salaryRangeId} className="label">
-              {eachItem.label}
-            </label>
-          </li>
+          <SalaryRange eachItem={eachItem} key={eachItem.salaryRangeId} />
         ))}
       </ul>
     </div>
@@ -254,6 +246,12 @@ class Jobs extends Component {
     )
   }
 
+  renderLoader = () => (
+    <div className="loader-container text-center" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
   renderResults = () => {
     const {jobListStatus} = this.state
 
@@ -262,6 +260,8 @@ class Jobs extends Component {
         return this.renderJobs()
       case jobListStatusList.failed:
         return <RenderFailed />
+      case jobListStatusList.progress:
+        return this.renderLoader()
       default:
         return null
     }
