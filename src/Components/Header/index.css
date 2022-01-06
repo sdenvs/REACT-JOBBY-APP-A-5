@@ -1,0 +1,35 @@
+.header-bg {
+  background-color: #272727;
+  padding: 15px;
+}
+.header-logo {
+  width: 70px;
+}
+.ulList1 {
+  padding: 0px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header-icon {
+  color: #ffffff;
+  font-size: 25px;
+  margin-left: 15px;
+}
+.md-Link {
+  color: #ffffff;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+@media screen and (min-width: 768px) {
+  .header-logo {
+    width: 150px;
+  }
+  .ulList2 {
+    padding: 0px;
+    list-style-type: none;
+  }
+}

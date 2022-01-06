@@ -1,0 +1,25 @@
+.skillsList {
+  display: flex;
+  color: #ffffff;
+  flex-wrap: wrap;
+}
+.skills-logo {
+  width: 25px;
+  margin-right: 10px;
+}
+.skills-item-container {
+  display: flex;
+  min-width: 100px;
+  flex: 1;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  flex-basis: 0;
+}
+.description {
+  color: #ffffff;
+}
+.bgjobdetails {
+  background-color: black;
+  height: 100vh;
+  overflow-y: scroll;
+}
