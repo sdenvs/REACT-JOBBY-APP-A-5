@@ -1,8 +1,6 @@
 const RenderFailed = props => {
-  const {getDetailsOfJob} = props
-  const getDetailsFun = () => {
-    getDetailsOfJob()
-  }
+  const {render} = props
+
   return (
     <div className="text-center">
       <img
@@ -12,7 +10,7 @@ const RenderFailed = props => {
       />
       <h3>Oops! Something Went Wrong</h3>
       <p>We cannot seem to find the page you are looking for.</p>
-      <button onClick={getDetailsFun} className="btn btn-primary">
+      <button onClick={render} className="btn btn-primary">
         Retry
       </button>
     </div>

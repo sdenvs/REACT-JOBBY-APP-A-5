@@ -259,7 +259,7 @@ class Jobs extends Component {
       case jobListStatusList.success:
         return this.renderJobs()
       case jobListStatusList.failed:
-        return <RenderFailed />
+        return <RenderFailed render={this.getJobsList} />
       case jobListStatusList.progress:
         return this.renderLoader()
       default:

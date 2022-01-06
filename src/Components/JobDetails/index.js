@@ -131,7 +131,7 @@ class JobDetails extends Component {
           <hr className="hori-line" />
           <div className="job-card-descrip">
             <div className="d-flex justify-content-between  mb-2">
-              <h5 className="font-weight-bold"> Description</h5>
+              <h5 className="font-weight-bold">Description</h5>
               <a href={JobDetailsData.companyWebsiteUrl} className="d-flex">
                 <p className="font-weight-bold">Visit</p>
                 <FiExternalLink />
@@ -173,7 +173,7 @@ class JobDetails extends Component {
       case statusList.success:
         return this.renderJobDetailsData()
       case statusList.failed:
-        return <RenderFailed getDetailsOfJob={this.getDetailsOfJob} />
+        return <RenderFailed render={this.getDetailsOfJob} />
       case statusList.progress:
         return this.loader()
 

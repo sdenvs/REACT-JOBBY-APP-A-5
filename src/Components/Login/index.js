@@ -48,23 +48,20 @@ class Login extends Component {
   formSubmit = async event => {
     event.preventDefault()
     const {username, password} = this.state
-    if (username === '' && password === '') {
-      this.setState({passwordBlur: true, usernameblur: true})
+
+    const url = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({username, password}),
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    if (response.ok === true) {
+      const {history} = this.props
+      Cookies.set('jwt_token', data.jwt_token, {expires: 7})
+      history.replace('/')
     } else {
-      const url = 'https://apis.ccbp.in/login'
-      const options = {
-        method: 'POST',
-        body: JSON.stringify({username, password}),
-      }
-      const response = await fetch(url, options)
-      const data = await response.json()
-      if (response.ok === true) {
-        const {history} = this.props
-        Cookies.set('jwt_token', data.jwt_token, {expires: 7})
-        history.replace('/')
-      } else {
-        this.setState({showError: true, error: data.error_msg})
-      }
+      this.setState({showError: true, error: data.error_msg})
     }
   }
 
